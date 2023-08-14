@@ -1,0 +1,109 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--  <title>All Users</title>-->
+<!--  <style>-->
+<!--    table {-->
+<!--      width: 100%;-->
+<!--      border-collapse: collapse;-->
+<!--    }-->
+
+<!--    th, td {-->
+<!--      padding: 10px;-->
+<!--      text-align: left;-->
+<!--      border-bottom: 1px solid #ddd;-->
+<!--    }-->
+
+<!--    tr:hover {-->
+<!--      background-color: #f2f2f2;-->
+<!--    }-->
+
+<!--    .action-links {-->
+<!--      white-space: nowrap;-->
+<!--      padding: 5px;-->
+<!--    }-->
+<!--  </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>All Users</h1>-->
+<!--<table>-->
+<!--  <tr>-->
+<!--    <th>ID</th>-->
+<!--    <th>Name</th>-->
+<!--    <th class="action-links">Actions</th>-->
+<!--  </tr>-->
+<!--  <tr th:each="usr : ${user}" th:attr="id=${usr.getId()}">-->
+<!--    <td th:text="${usr.getId()}"></td>-->
+<!--    <td th:text="${usr.getName()}"></td>-->
+<!--  </tr>-->
+<!--</table>-->
+<!--<a href="@{/users/{id}(id=${usr.getId()})}">edit</a>-->
+<!--<a href="/users/delete">delete</a>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en" xml:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Search result</title>
+  <style>
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th {
+      border: 1px solid #000000;
+      text-align: left;
+      padding: 8px;
+    }
+
+    td {
+      border: 1px solid #000000;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-surname: #b2afaf;
+    }
+
+  </style>
+</head>
+<body>
+
+
+<table>
+  <thead>
+  <tr>
+    <th>User id</th>
+    <th>User name</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="usr : ${user}">
+    <td th:text="${user.getId()}"></td>
+    <td th:text="${user.getName()}"></td>
+
+  </tr>
+  </tbody>
+</table>
+<br/>
+<button type="button" >
+  <a th:href="@{/users/{id}/edit(id=${user.getId()})}">Edit</a>
+</button>
+<br/>
+<br/>
+<form th:method="delete" th:action="@{/users/{id}(id=${user.id})}" th:object="${user}">
+  <input type="submit" value="delete">
+</form>
+<!--<form th:method="GET" th:action="@{/users/delete/{id}(id=${user.id})}" th:object="${user}">-->
+<!--  <input type="submit" value="delete"/>-->
+<!--</form>-->
+<!--<form action="/users/{id}" method="post">-->
+<!--  <input type="hidden" name="_method" value="delete">-->
+<!--  <input type="submit" value="Delete">-->
+<!--</form>-->
+</body>
+</html>

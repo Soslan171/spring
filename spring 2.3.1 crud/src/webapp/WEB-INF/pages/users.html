@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Users</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        .action-links {
+            white-space: nowrap;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>All Users</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+</tr>
+
+    <tr th:each="user : ${users}" th:attr="id=${user.getId()}" onclick="window.location.href='/users/'+this.id;">
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getName()}"></td>
+    </tr>
+</table>
+<a href="/users/add">Add User</a>
+</body>
+</html>
